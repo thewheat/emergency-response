@@ -260,19 +260,12 @@ app.data = {
 "Venezuela": ["911","911","911",""]
 };
 
-// prevent mobile context / long press menu
-window.oncontextmenu = function(event) {
-     event.preventDefault();
-     event.stopPropagation();
-     return false;
-};
 
 function findAncestor (el, cls) {
     if(el.classList.contains(cls)) return el;
     while ((el = el.parentElement) && !el.classList.contains(cls));
     return el;
 }
-
 
   document.querySelectorAll('.butAdd').forEach(function(t){
     t.addEventListener('click', function(e) {
@@ -284,9 +277,15 @@ function findAncestor (el, cls) {
   document.querySelectorAll('.butToggleDelete').forEach(function(t){
     t.addEventListener('click', function(e) {
       e.preventDefault();
-      if(!app.isSelecting())
-        alert("Select custom number to delete and delete from the menu");
-      app.toggleSelection(!app.isSelecting());
+      if(document.querySelectorAll(".card-item.custom").length > 0){
+        if(!app.isSelecting()){
+          alert("Select custom number to delete and delete from the menu");
+          app.toggleSelection(!app.isSelecting());
+        }
+      }
+      else{
+        alert("No custom numbers to delete")
+      }
       
     });
   });
@@ -294,6 +293,7 @@ function findAncestor (el, cls) {
     t.addEventListener('click', function(e) {
       e.preventDefault();
       app.deleteCards(true);
+      app.toggleSelection(false);
       app.getContactCards();
     });
   });
@@ -304,41 +304,6 @@ function findAncestor (el, cls) {
 	  });
   });
 
-  document.querySelector("main.main").addEventListener("mouseup", function(e){
-    app.toggleMouseDown(false);
-  })
-  var TIMEOUT = 500;
-  document.querySelector("main.main").addEventListener("mousedown", function(e,f){
-    if(!app.isSelecting()){
-      var element = findAncestor(e.target, "card-item");
-      if(element && element.classList.contains("custom")){
-        if(!app.isMouseDown()){
-          app.toggleMouseDown(true);
-          if(app.timeout) clearTimeout(app.timeout);
-
-          e.stopPropagation();
-          e.preventDefault();
-          app.timeout = setTimeout(function(){
-            if(app.isLongPress()){
-              element.classList.toggle("selected");
-              element.classList.add("longpress");
-              app.toggleSelection(true);
-              app.toggleMouseDown(false);
-            }
-          },TIMEOUT+1);
-        }
-      }
-    }
-  })
-  document.querySelector("main.main").addEventListener("touchend", function(e,f){
-    var element = findAncestor(e.target, "card-item");
-    if(!element) {
-      return;
-    }
-    if(element.classList.contains("longpress")) {
-      element.classList.remove("longpress");
-    }
-  })
   document.querySelector("main.main").addEventListener("click", function(e,f){
     if(!app.isSelecting()) {
       e.stopPropagation();
@@ -348,20 +313,14 @@ function findAncestor (el, cls) {
     if(!element) {
       return;
     }
-    if(element.classList.contains("longpress")) {
-      element.classList.remove("longpress");
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
     if(!element.classList.contains("custom")) {
       e.stopPropagation();
       return;
     }
 
     element.classList.toggle("selected");
-    if(document.querySelectorAll(".card-item.selected").length == 0)
-      app.toggleSelection(false);
+    // if(document.querySelectorAll(".card-item.selected").length == 0)
+    //   app.toggleSelection(false);
     e.preventDefault();
     e.stopPropagation();
   })
