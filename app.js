@@ -539,8 +539,8 @@ function findAncestor (el, cls) {
     if(!country) {
       country = localStorage.selectedCountry || "";
     }
-
-	 app.updateContactCards(country);
+    if(!country) return;
+    app.updateContactCards(country);
   };
 
   app.saveSelectedCountry = function() {
@@ -552,11 +552,13 @@ function findAncestor (el, cls) {
     localStorage.customNumbers = customNumbers;
   };
 
-  var initialData = {
-    key: 'Brunei'
-  };
+  var initialData = 'Brunei';
 
   app.selectedCountry = localStorage.selectedCountry;
+  if (!app.selectedCountry) {
+    app.selectedCountry = initialData;
+    app.saveSelectedCountry();
+  }
   app.customNumbers = localStorage.customNumbers;
   if (app.customNumbers) {
     app.customNumbers = JSON.parse(app.customNumbers);
