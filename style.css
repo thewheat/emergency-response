@@ -4,7 +4,11 @@
 	bottom: 24px;
 	padding-top: 24px;
 	margin-bottom: 0;
-	z-index: 998;  	
+	z-index: 10;
+}
+.mdl-floating-action-button.butAddCustom{
+    -webkit-transform: translate(-12px,-16px);
+    transform: translate(-12px,-16px);
 }
 
 a.mdl-card:-webkit-any-link{
