@@ -280,6 +280,16 @@ function findAncestor (el, cls) {
       app.toggleAddDialog(true);
     });
   });
+
+  document.querySelectorAll('.butToggleDelete').forEach(function(t){
+    t.addEventListener('click', function(e) {
+      e.preventDefault();
+      if(!app.isSelecting())
+        alert("Select custom number to delete and delete from the menu");
+      app.toggleSelection(!app.isSelecting());
+      
+    });
+  });
   document.querySelectorAll('.butDelete').forEach(function(t){
     t.addEventListener('click', function(e) {
       e.preventDefault();
@@ -295,12 +305,10 @@ function findAncestor (el, cls) {
   });
 
   document.querySelector("main.main").addEventListener("mouseup", function(e){
-    console.log("mouseup");
     app.toggleMouseDown(false);
   })
   var TIMEOUT = 500;
   document.querySelector("main.main").addEventListener("mousedown", function(e,f){
-    console.log("mousedown");
     if(!app.isSelecting()){
       var element = findAncestor(e.target, "card-item");
       if(element && element.classList.contains("custom")){
@@ -312,7 +320,6 @@ function findAncestor (el, cls) {
           e.preventDefault();
           app.timeout = setTimeout(function(){
             if(app.isLongPress()){
-              console.log("long press");
               element.classList.toggle("selected");
               element.classList.add("longpress");
               app.toggleSelection(true);
