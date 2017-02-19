@@ -563,6 +563,10 @@ function findAncestor (el, cls) {
   if (app.customNumbers) {
     app.customNumbers = JSON.parse(app.customNumbers);
   }
+  else{
+    localStorage.customNumbers = [];
+    app.saveCustomNumbers();
+  }
 
   app.getContactCards();
 
