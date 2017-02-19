@@ -277,6 +277,10 @@ function findAncestor (el, cls) {
   document.querySelectorAll('.butToggleDelete').forEach(function(t){
     t.addEventListener('click', function(e) {
       e.preventDefault();
+      if(app.isSelecting()){
+        app.toggleSelection(false);
+        return;
+      }
       if(document.querySelectorAll(".card-item.custom").length > 0){
         if(!app.isSelecting()){
           alert("Select custom number to delete and delete from the menu");
