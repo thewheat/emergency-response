@@ -1,15 +1,15 @@
 var dataCacheName = 'emergencyResponse-v1';
 var cacheName = 'emergencyResponse-1';
 var filesToCache = [
-  '/',
-  '/index.html',
-  '/app.js',
-  '/style.css',
-  '/material.min.css',
-  '/material.min.js',
-  '/police.png',
-  '/fire.png',
-  '/ambulance.png'
+  './',
+  './index.html',
+  './app.js',
+  './style.css',
+  './material.min.css',
+  './material.min.js',
+  './police.png',
+  './fire.png',
+  './ambulance.png'
 ];
 
 self.addEventListener('install', function(e) {
