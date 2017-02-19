@@ -1,0 +1,101 @@
+.mdl-floating-action-button{
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	padding-top: 24px;
+	margin-bottom: 0;
+	z-index: 998;  	
+}
+
+a.mdl-card:-webkit-any-link{
+	text-decoration: none;
+}
+
+.mdl-card__supporting-text{
+	background-color: rgba(0,0,0, 0.5);
+	color: #fff;
+	font-weight: bold;
+}
+.card-item {
+	min-height: auto;
+}
+.card-item.selected{
+	background-color: #ccc;
+	border: 2px solid #ddd;
+}
+.icon {
+	background-size: auto 5em;
+	background-position: 90% 1em;
+	background-repeat: no-repeat;
+}
+
+.ambulance{
+	background-image: url('ambulance.png');
+}
+.police {
+	background-image: url('police.png');
+}
+.fire {
+	background-image: url('fire.png');
+}
+
+.dialog-container {
+	background: rgba(0, 0, 0, 0.57);
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	will-change: opacity;
+	-webkit-transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
+	transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1); 
+}
+
+.dialog-container--visible {
+	opacity: 1;
+	pointer-events: auto; 
+	z-index: 10;
+}
+
+.dialog-container--visible {
+	opacity: 1;
+	pointer-events: auto; 
+}
+
+.dialog {
+	background: #FFF;
+	border-radius: 2px;
+	box-shadow: 0 0 14px rgba(0, 0, 0, 0.24), 0 14px 28px rgba(0, 0, 0, 0.48);
+	min-width: 280px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%) translateY(30px);
+	transform: translate(-50%, -50%) translateY(30px);
+	-webkit-transition: -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
+	transition: -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
+	transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
+	transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s, -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s; 
+}
+
+.dialog > div {
+	padding-left: 24px;
+	padding-right: 24px; 
+}
+
+.dialog-title {
+	padding-top: 20px;
+	font-size: 1.25em; 
+}
+
+.dialog-body {
+	padding-top: 20px;
+	padding-bottom: 24px; 
+}
+
+.dialog-body input[type=text], .dialog-body select{
+	width: 100%;
+	font-size: 2em; 
+}
