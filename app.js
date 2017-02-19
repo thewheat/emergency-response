@@ -559,9 +559,13 @@ function findAncestor (el, cls) {
     app.selectedCountry = initialData;
     app.saveSelectedCountry();
   }
-  app.customNumbers = localStorage.customNumbers || [];
+  app.customNumbers = localStorage.customNumbers;
   if (app.customNumbers) {
     app.customNumbers = JSON.parse(app.customNumbers);
+  }
+  else{
+    app.customNumbers = [];
+    app.saveCustomNumbers();
   }
 
   app.getContactCards();
