@@ -266,6 +266,7 @@ function findAncestor (el, cls) {
     while ((el = el.parentElement) && !el.classList.contains(cls));
     return el;
 }
+NodeList.prototype.forEach = NodeList.prototype.forEach || Array.prototype.forEach;
 
   document.querySelectorAll('.butAdd').forEach(function(t){
     t.addEventListener('click', function(e) {
